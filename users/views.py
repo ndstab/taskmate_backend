@@ -25,7 +25,6 @@ def register_user(request):
 @permission_classes([permissions.AllowAny])
 def login_user(request):
     """Login an existing user"""
-    print("im here")
     print(request.data)
     serializer = UserLoginSerializer(data=request.data)
     if serializer.is_valid():
@@ -36,7 +35,8 @@ def login_user(request):
             'access': str(refresh.access_token),
             'user': {
                 'email': user.email,
+                'phone_number': user.phone_number,
             }
         }, status=status.HTTP_200_OK)
-    print(serializer.errors)
+    print("here" , serializer.errors)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

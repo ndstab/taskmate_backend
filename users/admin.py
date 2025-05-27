@@ -7,10 +7,10 @@ class CustomUserAdmin(UserAdmin):
     """Admin configuration for CustomUser model"""
     
     # Fields to display in the list view
-    list_display = ('email', 'name', 'is_staff')
+    list_display = ('email', 'name', 'phone_number', 'is_staff')
     
     # Fields to search by
-    search_fields = ('email', 'name')
+    search_fields = ('email', 'name', 'phone_number')
     
     # Fields to filter by
     list_filter = ('is_staff', 'is_superuser', 'is_active')
@@ -18,7 +18,7 @@ class CustomUserAdmin(UserAdmin):
     # Fields to display in the detail view
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
-        ('Personal Info', {'fields': ('name',)}),
+        ('Personal Info', {'fields': ('name', 'phone_number')}),
         ('Permissions', {'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')}),
         ('Important dates', {'fields': ('last_login',)}),
     )
@@ -27,7 +27,7 @@ class CustomUserAdmin(UserAdmin):
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('email', 'name', 'password1', 'password2'),
+            'fields': ('email', 'name', 'phone_number', 'password1', 'password2'),
         }),
     )
     
